@@ -1,0 +1,46 @@
+import tkinter as tk
+from tkinter import filedialog
+import pygame
+
+# Initialize pygame mixer
+pygame.mixer.init()
+
+# Define functions for playback control
+def play_music():
+    pygame.mixer.music.play()
+
+def stop_music():
+    pygame.mixer.music.stop()
+
+def pause_music():
+    pygame.mixer.music.pause()
+
+def unpause_music():
+    pygame.mixer.music.unpause()
+
+def open_file():
+    file_path = filedialog.askopenfilename(filetypes=[("MP3 Files", "*.mp3")])
+    if file_path:
+        pygame.mixer.music.load(file_path)
+        pygame.mixer.music.play()
+
+# Create main application window
+root = tk.Tk()
+root.title("Simple Music Player")
+
+# Create buttons for control
+open_button = tk.Button(root, text="Open", command=open_file)
+play_button = tk.Button(root, text="Play", command=play_music)
+pause_button = tk.Button(root, text="Pause", command=pause_music)
+unpause_button = tk.Button(root, text="Unpause", command=unpause_music)
+stop_button = tk.Button(root, text="Stop", command=stop_music)
+
+# Arrange buttons on the window
+open_button.grid(row=0, column=0)
+play_button.grid(row=0, column=1)
+pause_button.grid(row=0, column=2)
+unpause_button.grid(row=0, column=3)
+stop_button.grid(row=0, column=4)
+
+# Run the application
+root.mainloop()
